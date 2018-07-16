@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1047</width>
+    <width>780</width>
     <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>BookStat</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTableWidget" name="tableWidget">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1031</width>
+      <width>761</width>
       <height>381</height>
      </rect>
     </property>
@@ -49,23 +49,7 @@
     </attribute>
     <column>
      <property name="text">
-      <string>Name</string>
-     </property>
-     <property name="textAlignment">
-      <set>AlignCenter</set>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Path</string>
-     </property>
-     <property name="textAlignment">
-      <set>AlignCenter</set>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Author</string>
+      <string>Book</string>
      </property>
      <property name="textAlignment">
       <set>AlignCenter</set>
@@ -131,7 +115,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1047</width>
+     <width>780</width>
      <height>21</height>
     </rect>
    </property>

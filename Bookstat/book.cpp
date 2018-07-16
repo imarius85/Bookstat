@@ -13,32 +13,15 @@ Book::Book()
 {   
 }
 
-Book::Book(string path) : Book(path, "Name", "Author")
-{
-
-}
-
-Book::Book(std::string path, std::string name, std::string author)
+Book::Book(string path)
 {
     this->path = path;
-    this->bookName = name;
-    this->bookAuthor = author;
-
     this->resetStatistics();
 }
 
+
 Book::~Book()
 {
-}
-
-const std::string &Book::getName()
-{
-    return this->bookName;
-}
-
-const std::string &Book::getAuthor()
-{
-    return this->bookAuthor;
 }
 
 const std::string &Book::getPath()

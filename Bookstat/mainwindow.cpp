@@ -30,10 +30,7 @@ void MainWindow::setTableRow(shared_ptr<Book> newBook, size_t row_id)
 {
     int col_id = 0;
 
-    ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::fromStdString(newBook.get()->getName())));
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::fromStdString(newBook.get()->getPath())));
-    ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::fromStdString(newBook.get()->getAuthor())));
-
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::number(newBook.get()->getStatistics().getPhraseCount())));
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::number(newBook.get()->getStatistics().getWordCount())));
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::number(newBook.get()->getStatistics().getDistinctWordCount())));
@@ -54,7 +51,7 @@ void MainWindow::updateTableUpdateItem(shared_ptr<Book> newBook)
 {
     for(auto row_id = 0; row_id < ui->tableWidget->rowCount(); row_id++)
     {
-        string rowBook = ui->tableWidget->item(row_id, 1)->text().toStdString();
+        string rowBook = ui->tableWidget->item(row_id, 0)->text().toStdString();
 
         if(rowBook.compare(newBook.get()->getPath()) == 0)
         {
@@ -92,7 +89,7 @@ void MainWindow::cm_runStatistics()
         if(indexList.isEmpty())
             return;
 
-        string fileName = ui->tableWidget->item(indexList.first().row(), 1)->text().toStdString();
+        string fileName = ui->tableWidget->item(indexList.first().row(), 0)->text().toStdString();
 
         if(bookCollection.find(fileName) != bookCollection.end())
         {
@@ -118,7 +115,7 @@ void MainWindow::cm_resetStatistics()
         if(indexList.isEmpty())
             return;
 
-        string fileName = ui->tableWidget->item(indexList.first().row(), 1)->text().toStdString();
+        string fileName = ui->tableWidget->item(indexList.first().row(), 0)->text().toStdString();
 
         bookCollection[fileName].get()->resetStatistics();
 
@@ -139,7 +136,7 @@ void MainWindow::cm_deleteItem()
         if(indexList.isEmpty())
             return;
 
-        string fileName = ui->tableWidget->item(indexList.first().row(), 1)->text().toStdString();
+        string fileName = ui->tableWidget->item(indexList.first().row(), 0)->text().toStdString();
 
         bookCollection.erase(fileName);
 
