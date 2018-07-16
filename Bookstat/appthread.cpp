@@ -22,7 +22,13 @@ void AppThread::run()
 
     try
     {
-        pBook->runStatistics();
+        //pBook->runStatistics();
+
+        for(int i = 0; i < 10; i++)
+        {
+            emit threadProcessing(pBook, (i+1)*10);
+            msleep(200);
+        }
     }
     catch(exception ex)
     {

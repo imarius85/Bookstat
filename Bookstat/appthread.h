@@ -19,6 +19,7 @@ public:
 signals:
     void threadError();
     void threadFinished(std::shared_ptr<Book>);
+    void threadProcessing(std::shared_ptr<Book>, int);
 
 public slots:
 

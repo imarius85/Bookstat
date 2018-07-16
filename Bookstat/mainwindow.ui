@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>780</width>
+    <width>921</width>
     <height>508</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>761</width>
+      <width>901</width>
       <height>381</height>
      </rect>
     </property>
@@ -95,6 +95,14 @@
       <set>AlignCenter</set>
      </property>
     </column>
+    <column>
+     <property name="text">
+      <string>Progress</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </column>
    </widget>
    <widget class="QPushButton" name="OpenFile">
     <property name="geometry">
@@ -115,7 +123,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>780</width>
+     <width>921</width>
      <height>21</height>
     </rect>
    </property>

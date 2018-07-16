@@ -1,14 +1,15 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-
 #include <qstring.h>
+#include <qfiledialog.h>
+#include <qmessagebox.h>
+#include <qprogressbar.h>
+
 #include <fstream>
 #include <memory>
 #include <future>
 
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include "appthread.h"
-#include <qfiledialog.h>
-#include <qmessagebox.h>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ void MainWindow::setTableRow(shared_ptr<Book> newBook, size_t row_id)
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::number(newBook.get()->getStatistics().getDistinctWordCount())));
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::number(newBook.get()->getStatistics().getLineCount())));
     ui->tableWidget->setItem(row_id, col_id++, new QTableWidgetItem(QString::number(newBook.get()->getStatistics().getSize())));
+    ui->tableWidget->setCellWidget(row_id, col_id++, new QProgressBar());
 }
 
 void MainWindow::updateTableAddItem(shared_ptr<Book> newBook)
@@ -56,6 +58,23 @@ void MainWindow::updateTableUpdateItem(shared_ptr<Book> newBook)
         if(rowBook.compare(newBook.get()->getPath()) == 0)
         {
             setTableRow(newBook, row_id);
+            break;
+        }
+    }
+}
+
+void MainWindow::updateTableUpdateItem(shared_ptr<Book> newBook, int percentage)
+{
+    for(auto row_id = 0; row_id < ui->tableWidget->rowCount(); row_id++)
+    {
+        string rowBook = ui->tableWidget->item(row_id, 0)->text().toStdString();
+
+        if(rowBook.compare(newBook.get()->getPath()) == 0)
+        {
+            QProgressBar *ptr = dynamic_cast<QProgressBar *>(ui->tableWidget->cellWidget(row_id, 6));
+            if(ptr)
+                ptr->setValue(percentage);
+
             break;
         }
     }
@@ -96,6 +115,7 @@ void MainWindow::cm_runStatistics()
             AppThread *newThread = new AppThread(bookCollection[fileName]);
 
             connect(newThread,    SIGNAL(threadFinished(std::shared_ptr<Book>)), this, SLOT(tProcessingDone(std::shared_ptr<Book>)));
+            connect(newThread,    SIGNAL(threadProcessing(std::shared_ptr<Book>, int)), this, SLOT(tProcessing(std::shared_ptr<Book>, int)));
 
             newThread->start();
         }
@@ -151,6 +171,11 @@ void MainWindow::cm_deleteItem()
 void MainWindow::tProcessingDone(std::shared_ptr<Book> pBook)
 {
     updateTableUpdateItem(pBook);
+}
+
+void MainWindow::tProcessing(std::shared_ptr<Book> pBook, int percentage)
+{
+    updateTableUpdateItem(pBook, percentage);
 }
 
 void MainWindow::on_OpenFile_clicked()

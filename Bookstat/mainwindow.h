@@ -1,12 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ui_mainwindow.h"
 #include <QMainWindow>
 
-#include "book.h"
 #include <map>
 #include <memory>
+
+#include "ui_mainwindow.h"
+#include "book.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +29,7 @@ public:
 
     void updateTableAddItem(shared_ptr<Book> newBook);
     void updateTableUpdateItem(shared_ptr<Book> newBook);
+    void updateTableUpdateItem(shared_ptr<Book> newBook, int percentage);
 
 public slots:
     void on_OpenFile_clicked();
@@ -39,6 +41,7 @@ public slots:
     void cm_deleteItem();
 
     void tProcessingDone(std::shared_ptr<Book>);
+    void tProcessing(std::shared_ptr<Book>, int);
 
 private:
     Ui::MainWindow *ui;
