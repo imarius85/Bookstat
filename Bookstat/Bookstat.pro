@@ -29,14 +29,20 @@ SOURCES += \
     Controller/appthread.cpp \
     View/mainwindow.cpp \
     applogger.cpp \
-    main.cpp
+    main.cpp \
+    Model/appmodel.cpp \
+    View/appview.cpp \
+    Controller/appcontroller.cpp
 
 HEADERS += \
     Model/book.h \
     Model/statistic.h \
     Controller/appthread.h \
     View/mainwindow.h \
-    applogger.h
+    applogger.h \
+    Model/appmodel.h \
+    View/appview.h \
+    Controller/appcontroller.h
 
 FORMS += \
         mainwindow.ui
