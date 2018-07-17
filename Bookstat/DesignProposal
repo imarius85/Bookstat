@@ -1,0 +1,21 @@
+Goals:
+    - implement an MVC architecture
+
+Model:
+    - manage underlying data type <Book>
+    - manage access to files
+    - communicates only with controller
+
+View:
+    - mainwindow should be clear of any references to underlying data type < Book >
+    - should communicate only with controller
+
+Controller:
+    - manage communication between view and model
+    - manage app threads
+    - conversion between model data type and view data type
+    - informs view to change it's state
+
+Thread management:
+
+Memory leaks:

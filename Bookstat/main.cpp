@@ -1,6 +1,6 @@
-#include "mainwindow.h"
 #include <QApplication>
 
+#include "View/mainwindow.h"
 #include "applogger.h"
 
 int main(int argc, char *argv[])

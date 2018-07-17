@@ -24,19 +24,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    book.cpp \
-    statistic.cpp \
+    Model/book.cpp \
+    Model/statistic.cpp \
+    Controller/appthread.cpp \
+    View/mainwindow.cpp \
     applogger.cpp \
-    appthread.cpp
+    main.cpp
 
 HEADERS += \
-        mainwindow.h \
-    book.h \
-    statistic.h \
-    applogger.h \
-    appthread.h
+    Model/book.h \
+    Model/statistic.h \
+    Controller/appthread.h \
+    View/mainwindow.h \
+    applogger.h
 
 FORMS += \
         mainwindow.ui
+
+DISTFILES += \
+    DesignProposal
